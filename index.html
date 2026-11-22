@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CWG has moved</title>
+</head>
+<body>
+  <p>CWG has moved. <a id="destination" href="https://cwg.echowrought.com/">Continue to CWG</a>.</p>
+  <script>
+    const routes = new Map([
+      ["cwg2-homepage.rskiland.workers.dev", ""],
+      ["cwg2-leaderboard.rskiland.workers.dev", "/leaderboard"],
+      ["cwg2-leaderboard-admin.rskiland.workers.dev", "/admin_panel"]
+    ]);
+    const prefix = routes.get(location.hostname);
+    if (prefix !== undefined) {
+      const suffix = location.pathname === "/" ? "" : location.pathname;
+      const target = new URL("https://cwg.echowrought.com/");
+      target.pathname = prefix + suffix;
+      target.search = location.search;
+      target.hash = location.hash;
+      document.getElementById("destination").href = target.href;
+      location.replace(target.href);
+    }
+  </script>
+</body>
+</html>
